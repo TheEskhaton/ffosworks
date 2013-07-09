@@ -1,3 +1,6 @@
- navigator.geolocation.getCurrentPosition(function(position) {
-            document.getElementById('geo').innerHtml = position.coords.latitude+','+position.coords.longitude;
-        });      
+document.addEventListener('DOMContentLoaded', function(){
+navigator.geolocation.getCurrentPosition(function(position) {
+    document.write(position.coords.latitude +',' + position.coords.longitude);
+});
+});
+
