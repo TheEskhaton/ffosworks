@@ -2,6 +2,7 @@
 	"name": "HelloWorld",
 	"description": "HelloWorld application",
 	"launch_path": "index.htm",
+    "type" : "privileged",
 	"icons": {
 		"32": "/favicon/icon_32.png",
 		"48": "/favicon/icon_48.png",
@@ -10,6 +11,10 @@
     "permissions": {
         "geolocation" : {
             "description" : "TREBAM GEOLOCATION LOL"
+        },
+        "contacts" : {
+            "description" : "needs contacts",
+            "access": "readcreate"
         }
     }
 }
