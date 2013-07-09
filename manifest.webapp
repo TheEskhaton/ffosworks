@@ -1,0 +1,15 @@
+{
+	"name": "HelloWorld",
+	"description": "HelloWorld application",
+	"launch_path": "index.htm",
+	"icons": {
+		"32": "/favicon/icon_32.png",
+		"48": "/favicon/icon_48.png",
+		"128": "/favicon/icon_128.png"
+	},
+    "permissions": {
+        "geolocation" : {
+            "description" : "TREBAM GEOLOCATION LOL"
+        }
+    }
+}
