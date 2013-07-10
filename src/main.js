@@ -1,42 +1,51 @@
-document.addEventListener('DOMContentLoaded', function(){
-    document.querySelector('.geo').addEventListener('click', function(){
-            navigator.geolocation.getCurrentPosition(function(position) {
-            document.getElementById('content').innerHTML = position.coords.latitude +',' + position.coords.longitude;
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    var hideLoader = function(){
+        $$('loader').style.display = 'none';
+    };
+    var showLoader = function(){
+        $$('loader').style.display = 'block';
+    };
+    hideLoader();
+    $('.geo').addEventListener('click', function() {
+        showLoader();
+        navigator.geolocation.getCurrentPosition(function(position) {
+            hideLoader();
+            document.getElementById('content').innerHTML = position.coords.latitude + ',' + position.coords.longitude;
         });
 
         return false;
     });
     var count = 1;
-    document.querySelector('.cont').addEventListener('click', function(){
     var person = new mozContact();
-    person.givenName  = ["John"+count];
+    person.givenName = ["John" + count];
     person.familyName = ["Doe"];
 
     var saving = navigator.mozContacts.save(person);
 
-    saving.onsuccess = function() {
-        console.log('new contact saved');
-        person = saving.result;
-        count++;
- var allContacts = navigator.mozContacts.getAll({sortBy: "familyName", sortOrder: "descending"});
-document.getElementById('content').innerHTML = ""; 
-    allContacts.onsuccess = function(event) {
-        var cursor = event.target;
-        if (cursor.result) {
-            document.getElementById('content').innerHTML += cursor.result.givenName[0] + " " + cursor.result.familyName[0] +'<br />';
-            cursor.continue();
-        } else {
-            console.log("No more contacts");
+    var saving = navigator.mozContacts.save(person);
+    $('.cont').addEventListener('click', function() {
+        showLoader();
+        var allContacts = navigator.mozContacts.getAll({
+            sortBy: "familyName",
+            sortOrder: "descending"
+        });
+        $$('content').innerHTML = "";
+        allContacts.onsuccess = function(event) {
+
+            var cursor = event.target;
+            if (cursor.result) {
+                $$('content').innerHTML += cursor.result.givenName[0] + " " + cursor.result.familyName[0] + '<br />';
+                cursor.
+                continue();
+                hideLoader();
+            } else {
+                console.log("No more contacts");
+            }
         }
-    }
-
-    };
-        
-       
-        
         return false;
-    
-    });    
-    
-});
 
+    });
+
+});
